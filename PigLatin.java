@@ -52,6 +52,24 @@ public class PigLatin {
 
 		return newWord;
 	}
+	public static String pigLatinBest(String s) {
+		String newWord = "";
+		String alphabetAndNumbers = "abcdefghijklmnopqrstuvwxyz0123456789";
+		boolean hasPunctuation = true;
+		char lastCharacter = s.charAt(s.length()-1);
+		for (int i = 0; i < alphabetAndNumbers.length(); i++) {
+			if (lastCharacter == alphabetAndNumbers.charAt(i) ) {
+				hasPunctuation = false;
+			}
+		}
+
+		if (hasPunctuation) {
+			newWord = pigLatin(s.substring(0, s.length()-1)) + lastCharacter;
+		} else {
+			newWord = pigLatin(s);
+		}
+		return newWord;
+	}
 	public static void main ( String[] args ) {
 		// Scanner n = new Scanner( System.in );
 		// while (n.hasNextLine()) {
@@ -63,15 +81,27 @@ public class PigLatin {
 		// 	}
 		// 	System.out.println();
 		// }
+		// Scanner n = new Scanner( System.in );
+		// while (n.hasNextLine()) {
+		// 	Scanner line = new Scanner( n.nextLine() );
+		// 	while (line.hasNext()) {
+		// 		String word = line.next();
+		// 		System.out.print(pigLatin(word));
+		// 		System.out.print(" ");
+		// 	}
+		// 	System.out.println();
+		// }
 		Scanner n = new Scanner( System.in );
 		while (n.hasNextLine()) {
 			Scanner line = new Scanner( n.nextLine() );
 			while (line.hasNext()) {
 				String word = line.next();
-				System.out.print(pigLatin(word));
+				System.out.print(pigLatinBest(word));
 				System.out.print(" ");
 			}
-			System.out.println();
+			if (n.hasNextLine()) {
+				System.out.println();
+			}
 		}
 	}
 }
